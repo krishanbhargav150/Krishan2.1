@@ -14,10 +14,10 @@ export class EmployeeController {
     }
 
 // still not get over it 
-    @Get('/:employeeId')
-    getEmployee(@Body('employeeId', ParseIntPipe) employeeId : number){ 
-        return this.employeeService.show(employeeId);
-    }
+    // @Get('/:employeeId')
+    // getEmployee(@Body('employeeId', ParseIntPipe) employeeId : number){ 
+    //     return this.employeeService.show(employeeId);
+    // }
 
 
 
