@@ -31,10 +31,9 @@ export class UserController {
     }
 
     @Get('/:userId')
-    getApi(@Body('userId', ParseIntPipe) userId: number) {
-        return this.userService.show(userId);
+   async  getApi(@Param('userId', ParseIntPipe) userId: number) {
+        return await this.userService.show(userId);
     }
-
 
 
 }

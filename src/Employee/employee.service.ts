@@ -15,7 +15,7 @@ export class EmployeeService {
         return this.UserRepository.save(createEmployeeDto);
     }
 
-    show(employeeId : number){
-        return this.UserRepository.findOne({ where : { id : employeeId}});
+    async show(employeeId : number){
+        return await this.UserRepository.findOne({ where : { id : employeeId}});
     }
 }

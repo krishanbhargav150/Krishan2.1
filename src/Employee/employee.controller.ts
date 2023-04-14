@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Body, ParseIntPipe } from '@nestjs/common';
+import { Controller, Post, Get, Body, ParseIntPipe, Query, Param } from '@nestjs/common';
 import { EmployeeService } from './employee.service';
 import { create } from 'domain';
 import { createEmployeeDto } from 'src/dto/create-employee.dto';
@@ -14,11 +14,11 @@ export class EmployeeController {
     }
 
 // still not get over it 
-    // @Get('/:employeeId')
-    // getEmployee(@Body('employeeId', ParseIntPipe) employeeId : number){ 
-    //     return this.employeeService.show(employeeId);
-    // }
-
+    @Get('/:employeeId')
+    async getEmployee(@Param('employeeId') employeeId : number){ 
+        console.log("kuch bhi", employeeId);
+        return await this.employeeService.show(employeeId);
+    }
 
 
 }
