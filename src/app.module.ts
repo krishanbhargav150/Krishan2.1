@@ -10,6 +10,7 @@ import { EmployeeController } from './employee/employee.controller';
 import { EmployeeService } from './employee/employee.service';
 import { EmployeeModule } from './employee/employee.module';
 
+
 @Module({
   imports: [UserModule, typeOrmModule, EmployeeModule],
   controllers: [AppController, UserController, AuthController, EmployeeController],
