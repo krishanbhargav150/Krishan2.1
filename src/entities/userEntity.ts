@@ -9,11 +9,14 @@ export class User {
   name: string;
 
   @Column()
-  post: string;
+  post: string | null;
 
   @Column()
-  age: number;
+  age: number | null;
 
   @Column()
   password : string;
+
+  @Column()
+  status : boolean;
 }

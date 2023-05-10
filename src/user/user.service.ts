@@ -20,17 +20,21 @@ export class UserService {
         return this.UserRepository.save(createUserDto);
     }
 
-    updateUser(updateUserDto: updateUserDto, userId: number) {
-        return this.UserRepository.update(userId, updateUserDto);
+    updateUser(userName: string): Promise<User> {
+        return this.UserRepository.findOne({ where: { name : userName}});
     }
 
-    show(userId: number) {
-        return this.UserRepository.findOne({ where: { id: userId } });
-    }
+    // updateUser(updateUserDto: updateUserDto, name: string) {
+    //     return this.UserRepository.update(name, updateUserDto);
+    // }
 
-    findByName(name: string) {
-        return this.UserRepository.findOne({ where: { name } });
-    }
+    // show(name: string) {
+    //     return this.UserRepository.findOne({ where: { name: name } });
+    // }
+
+    // findByName(name: string) {
+    //     return this.UserRepository.findOne({ where: { name } });
+    // }
 
     deleteUser(userId: number) {
         return this.UserRepository.delete(userId);

@@ -1,7 +1,10 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { createUserDto } from '../dto/create-user.dto';
 import { updateUserDto } from '../dto/update-user.dto';
+import { User } from 'src/entities/userEntity';
+import { AuthGuard } from '@nestjs/passport';
+
 
 @Controller('user')
 export class UserController {
@@ -12,28 +15,44 @@ export class UserController {
         return this.userService.getUser();
     }
 
+    
     @Post('/create')
     store(@Body() createUserDto: createUserDto) {
-        return this.userService.create(createUserDto);
+     this.userService.create(createUserDto);
+     return "user created successfully";
     }
 
-    @Patch(':userId')
-    update(
-        @Body() updateUserDto: updateUserDto,
-        @Param('userId', ParseIntPipe) userId: number) {
-        return this.userService.updateUser(updateUserDto, userId);
 
-    }
+
+    // @Patch(':name')
+    // async update(
+    //     @Body() updateUserDto: updateUserDto,
+    //   // @Body() body : User<updateUserDto>,
+    //     @Param('name') name: string) {
+    //         const userName = await this.userService.updateUser(updateUserDto, name);
+
+    //         if(newLocal){
+    //             throw new BadRequestException("Name does not exists in database!");
+       
+    //         }
+    //         else{
+    //             this.userService.updateUser(updateUserDto, name);
+    //             return `this ${name} updated successfully`;
+    //         }
+           
+
+  
 
     @Delete('/:userId')
     deleteUser(@Param('userId', ParseIntPipe) userId: number) {
-        return this.userService.deleteUser(userId);
+     this.userService.deleteUser(userId);
+     return `this ${userId} has been deleted !!`;
     }
 
-    @Get('/:userId')
-   async  getApi(@Param('userId', ParseIntPipe) userId: number) {
-        return await this.userService.show(userId);
-    }
+//     @Get('/:userId')
+//    async  getApi(@Param('userId', ParseIntPipe) userId: number) {
+//         return await this.userService.show(userId);
+//     }
 
 
 }
