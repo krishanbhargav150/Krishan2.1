@@ -6,16 +6,24 @@ import { EmployeeMaster } from 'src/entities/employeeEntity';
 
 @Injectable()
 export class EmployeeService {
+  constructor(
+    @InjectRepository(EmployeeMaster)
+    private EmployeeRepository: Repository<EmployeeMaster>,
+  ) {}
 
-    constructor(
-        @InjectRepository(EmployeeMaster)
-        private UserRepository: Repository<EmployeeMaster>) { }
+  async newEmployee(createEmployeeDto: createEmployeeDto) {
+    return await this.EmployeeRepository.save(createEmployeeDto);
+  }
 
-    newEmployee(createEmployeeDto : createEmployeeDto){
-        return this.UserRepository.save(createEmployeeDto);
-    }
+  async show(employeeId: number) {
+    return await this.EmployeeRepository.findOne({ where: { id: employeeId } });
+  }
 
-    async show(employeeId : number){
-        return await this.UserRepository.findOne({ where : { id : employeeId}});
-    }
+  async deleteEmployee(id: number) {
+    return await this.EmployeeRepository.delete({ id });
+  }
+
+  async updateEmployeeData(id: number, body: createEmployeeDto) {
+    return await this.EmployeeRepository.update({ id }, body);
+  }
 }

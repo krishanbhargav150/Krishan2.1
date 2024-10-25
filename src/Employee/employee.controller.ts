@@ -1,23 +1,31 @@
-import { Controller, Post, Get, Body, ParseIntPipe, Query, Param } from '@nestjs/common';
+import { Controller, Post, Get, Body, Param, Delete, Patch } from '@nestjs/common';
 import { EmployeeService } from './employee.service';
-import { create } from 'domain';
 import { createEmployeeDto } from 'src/dto/create-employee.dto';
-import { EmbeddedMetadata } from 'typeorm/metadata/EmbeddedMetadata';
 
 @Controller('employee')
 export class EmployeeController {
     constructor(private employeeService : EmployeeService){ }
 
     @Post('/create')
-    createEmployee(@Body() createEmployeeDto : createEmployeeDto) {
-        return this.employeeService.newEmployee(createEmployeeDto);
+    async createEmployee(@Body() createEmployeeDto : createEmployeeDto) {
+        await this.employeeService.newEmployee(createEmployeeDto);
+
+        return `Employee added in database`;
     }
 
-// still not get over it 
     @Get('/:employeeId')
     async getEmployee(@Param('employeeId') employeeId : number){ 
-        console.log("kuch bhi", employeeId);
         return await this.employeeService.show(employeeId);
+    }
+
+    @Delete('/:employeeId')
+    async deleteEmployee(@Param('employeeId') id: number){
+        await this.employeeService.deleteEmployee(id);
+    }
+
+    @Patch('/update')
+    async updateEmployeeData(@Param('employeeId') id: number, @Body() createEmployeeDto: createEmployeeDto){
+        await this.employeeService.updateEmployeeData(id, createEmployeeDto);
     }
 
 
