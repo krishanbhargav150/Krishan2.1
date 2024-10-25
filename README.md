@@ -1,22 +1,22 @@
 ## CRUD APIs
 
--- Create Employee data in database
--- Get Employee data from database
--- Delete Employee data from database
--- Update data in database
+1. Create Employee data in database
+2. Get Employee data from database
+3. Delete Employee data from database
+4. Update data in database
 
 ## Tools 
 
--- Postman
--- MySQL
+1. Postman
+2. MySQL
 
 ## Base URL
 
--- http://localhost:5001/
+ http://localhost:5001/
 
 ## APIs
 
--- employee/create (POST API)
--- employee/:employeeId (GET API)
--- employee/:employeeId (DELETE API)
--- employee/update/:id (PATCH API)
+1. employee/create (POST API)
+2. employee/:employeeId (GET API)
+3. employee/:employeeId (DELETE API)
+4. employee/update/:id (PATCH API)
